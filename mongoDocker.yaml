@@ -17,3 +17,7 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://mongoDbAdmin:passwordExample@mongo:27017/
     depends_on:
       - mongo
+networks:
+  dockerexample_default:
+    external: true
+    name: dockerexample_default

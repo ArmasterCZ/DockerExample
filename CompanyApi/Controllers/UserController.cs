@@ -9,6 +9,54 @@ namespace DockerExample.Controllers
     [Route("api/v1/[controller]/[action]")]
     public class UserController : Controller
     {
+        string[] FirstNames =
+        [
+            "John",
+            "Jiri",
+            "Carlos",
+            "Hans",
+            "Marco",
+            "Pierre",
+            "Piotr",
+            "Ivan",
+            "Georgios",
+            "Hiroshi",
+            "Min",
+            "Wei",
+            "Arjun",
+            "Ahmed",
+            "Joao",
+            "Ngoc",
+            "Lars",
+            "Patrick",
+            "Sipho",
+            "Mateo"
+        ];
+
+        string[] LastNames =
+        [
+            "Smith",
+            "Procházka",
+            "García",
+            "Müller",
+            "Rossi",
+            "Dubois",
+            "Kowalski",
+            "Ivanov",
+            "Papadopoulos",
+            "Nakamura",
+            "Kim",
+            "Wang",
+            "Singh",
+            "Hassan",
+            "Silva",
+            "Nguyen",
+            "Andersson",
+            "O'Connor",
+            "Dlamini",
+            "Fernández"
+        ];
+
         private readonly IMongoCollection<UserModel> users;
 
         public UserController(MongoDbService mongoDbService)
@@ -24,6 +72,28 @@ namespace DockerExample.Controllers
         public async Task<IEnumerable<UserModel>> Get()
         {
             return await users.Find(FilterDefinition<UserModel>.Empty).ToListAsync();
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<UserModel>> GetRandom()
+        {
+            return new List<UserModel>
+            {
+                new UserModel()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    FirstName = FirstNames[new Random().Next(0, 19)],
+                    LastName = LastNames[new Random().Next(0, 19)],
+                    Age = new Random().Next(16, 62)
+                },
+                new UserModel()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    FirstName = FirstNames[new Random().Next(0, 19)],
+                    LastName = LastNames[new Random().Next(0, 19)],
+                    Age = new Random().Next(16, 62)
+                }
+            };
         }
 
         [HttpGet]
@@ -44,53 +114,6 @@ namespace DockerExample.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRandom()
         {
-            string[] FirstNames =
-            [
-                "John",
-                "Jiri",
-                "Carlos",
-                "Hans",
-                "Marco",
-                "Pierre",
-                "Piotr",
-                "Ivan",
-                "Georgios",
-                "Hiroshi",
-                "Min",
-                "Wei",
-                "Arjun",
-                "Ahmed",
-                "Joao",
-                "Ngoc",
-                "Lars",
-                "Patrick",
-                "Sipho",
-                "Mateo"
-            ];
-
-            string[] LastNames =
-            [
-                "Smith",
-                "Procházka",
-                "García",
-                "Müller",
-                "Rossi",
-                "Dubois",
-                "Kowalski",
-                "Ivanov",
-                "Papadopoulos",
-                "Nakamura",
-                "Kim",
-                "Wang",
-                "Singh",
-                "Hassan",
-                "Silva",
-                "Nguyen",
-                "Andersson",
-                "O'Connor",
-                "Dlamini",
-                "Fernández"
-            ];
 
             var newUser = new UserModel()
             {

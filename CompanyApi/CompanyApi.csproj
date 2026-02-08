@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>8c3dd413-19a5-4e67-9f65-e7d3eb8fc4f9</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileRunArguments>--network dockerexample_default</DockerfileRunArguments>
   </PropertyGroup>
 
   <ItemGroup>

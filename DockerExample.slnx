@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Client/Client.csproj" Id="5f1fff9d-fda9-4e44-a385-335fbff93417" />
+  <Project Path="ClientLocal/ClientLocal.csproj" Id="5171c8cc-3475-48c4-aa93-f29ea6909bae" />
   <Project Path="CompanyApi/CompanyApi.csproj" />
   <Project Path="CompanyApiLocal/CompanyApiLocal.csproj" Id="d578d206-34b5-4de9-96b0-226714395a61" />
 </Solution>
